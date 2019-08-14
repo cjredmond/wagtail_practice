@@ -7,6 +7,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
+from user_authentication import views as auth_views
 
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -17,6 +18,10 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
 
     url(r'^comments/', include('django_comments.urls')),
+
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+
+    url(r'^test/', auth_views.TestView.as_view(), name='test_view'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in

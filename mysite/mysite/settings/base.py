@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'search',
     'blog',
 
+    'webpack_loader',
+
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -52,6 +54,8 @@ INSTALLED_APPS = [
 
     'django_comments',
     'django.contrib.sites',
+
+    'user_authentication'
 ]
 
 MIDDLEWARE = [
@@ -175,3 +179,16 @@ SITE_ID = 1;
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+DEBUG = True
+VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': 'vue/',  # must end with slash
+        'STATS_FILE': os.path.join(VUE_FRONTEND_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+    }
+}
