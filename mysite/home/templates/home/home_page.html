@@ -2,8 +2,12 @@
 
 {% load wagtailcore_tags %}
 
-{% block body_class %}template-homepage{% endblock %}
+{% block body_class %}template-homepage<p>paragraph</p>{% endblock %}
+
 {% block content %}
     {{ page.body|richtext }}
     {{ page.test|richtext }}
+    <p><a href="/blog">Blog</a></p>
+    <p><a href="{% url 'login' %}">Login</a></p>
+    <p><a href="{% url 'signup' %}">Create User</a></p>
 {% endblock %}

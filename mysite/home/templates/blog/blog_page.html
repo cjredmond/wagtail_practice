@@ -48,9 +48,36 @@
 
     <p><a href="{{ page.get_parent.url }}">Return to blog</a></p>
 
-    {% render_comment_list for page %}
-    {% if user.is_authenticated %}
+    <!-- {% render_comment_list for page %} -->
+    <!-- {% if user.is_authenticated %}
     {% render_comment_form for page %}
+    {% endif %} -->
+
+    {% get_comment_list for page as comment_list %}
+    {% for comment in comment_list %}
+    {{ comment.user.username }}
+    {{ comment.comment }}
+    {{ comment.submit_date }}
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+    {% get_comment_form for page as form %}
+    <form action="{% comment_form_target %}" method="POST">
+    {% csrf_token %}
+    {{ form.comment }}
+    {% ifequal field.name 'honeypot' %}
+        <input id="id_name" type="hidden" name="name" value="{{ user.username }}" />
+    {% endifequal %}
+    <!-- {{ form.honeypot }} -->
+    {{ form.content_type }}
+    {{ form.object_pk }}
+    {{ form.timestamp }}
+    {{ form.security_hash }}
+    <input type="hidden" name="next" value="{% pageurl page %}" />
+    <input type="submit" value="Add comment" id="id_submit" />
+    </form>
+    {% else %}
+    <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
     {% endif %}
 
 {% endblock %}

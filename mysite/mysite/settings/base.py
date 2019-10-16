@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'home',
     'search',
     'blog',
+    'pick',
 
     'webpack_loader',
 
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -176,8 +179,17 @@ WAGTAIL_SITE_NAME = "mysite"
 
 SITE_ID = 1;
 
+LOGIN_REDIRECT_URL = '/'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = '' # mail service smtp
+EMAIL_HOST_USER = '' # email id
+EMAIL_HOST_PASSWORD = '' #password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
+# AUTH_USER_MODEL = "user_authentication.User" 
 BASE_URL = 'http://example.com'
 DEBUG = True
 VUE_FRONTEND_DIR = os.path.join(BASE_DIR, 'vue_frontend')

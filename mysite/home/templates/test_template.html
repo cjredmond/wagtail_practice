@@ -1,7 +1,13 @@
 {% load render_bundle from webpack_loader %}
 
-<div id="app">
-  <app></app>
+<body>
+	<div id="app">
+	<div id='games' games='{{ articles }}'></div>
+  <app>
+  	
+  </app>
 </div>
 {% render_bundle 'chunk-vendors' %}
 {% render_bundle 'vue_app_01' %}
+</body>
+

@@ -27,7 +27,7 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-
+        {{ request.user.username }}
         {% block content %}{% endblock %}
 
         {# Global javascript #}

@@ -9,9 +9,14 @@ import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
-  }
+  beforeMount() {
+    this.games = 1
+    // this.games = document.getElementById('games')[0].getAttribute('games') || '';
+    console.log(this.games)
+  },
+  // components: {
+  //   HelloWorld
+  // }
 }
 </script>
 
